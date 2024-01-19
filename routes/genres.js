@@ -24,7 +24,7 @@ router.get('/:id', async(req,res)=>{
 router.post('/',async(req,res)=>{
     const { error } = validategener(req.body);
     if(error){
-        res.status(400).send(result.error.details[0].message);
+        res.status(404).send(result.error.details[0].message);
         return;
     }
 

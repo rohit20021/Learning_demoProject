@@ -20,18 +20,42 @@ router.get('/:id', async(req,res)=>{
 });
 
 
-//post genre
-
+// add a gener
 router.post('/',async(req,res)=>{
+    const { error } = validategener(req.body);
+    if(error){
+        res.status(400).send(result.error.details[0].message);
+        return;
+    }
+
+    let genre= new Genre({types: req.body.types});
+    genre= await genre.save();
+    res.send(genre);
+});
+
+// update a gener
+router.put('/:id', async(req,res)=>{
     const {error} = validategener(req.body);
     if(error){
         res.status(404).send(result.error.details[0].message);
         return;
     }
-    let genre=new Genre({type:req.body.type});
-    genre=await genre.save();
-    res.send(genre);
-});
+    let genre= await Genre.findByIdAndUpdate(req.params.id,{types:req.body.types});
+    if(!genre){
+        res.status(404).send("id does not exists");
+        return
+    }
+    res.status(200).send(genre);
+})
 
+// delete a genre
+router.delete('/:id', async(req,res)=>{
+    let genre= await Genre.findByIdAndDelete(req.params.id);
+    if(!genre){
+        res.status(404).send("id does not exists");
+        return
+    }
+    res.status(200).send(genre.types);
+})
 
 module.exports = router;

@@ -33,8 +33,6 @@ router.post('/',async(req,res)=>{
     res.send(genre);
 });
 
-
-
 // update a gener
 router.put('/:id', async(req,res)=>{
     const {error} = validategener(req.body);
@@ -48,6 +46,16 @@ router.put('/:id', async(req,res)=>{
         return
     }
     res.status(200).send(genre);
+})
+
+// delete a genre
+router.delete('/:id', async(req,res)=>{
+    let genre= await Genre.findByIdAndDelete(req.params.id);
+    if(!genre){
+        res.status(404).send("id does not exists");
+        return
+    }
+    res.status(200).send(genre.types);
 })
 
 module.exports = router;

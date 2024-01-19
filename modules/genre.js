@@ -1,17 +1,16 @@
 const mongoose= require('mongoose');
 const Joi = require('joi');
 
-
 const generschema = mongoose.Schema({
     types: {
         type:String,
         require:true,
         minlength:5, 
-        maxlength:50
+        maxlength:50 
     }
 });
-const Genre = mongoose.model('Genre',generschema);
 
+const Genre = mongoose.model('Genre',generschema);
 
 function validategener(genre)
 {
@@ -20,7 +19,6 @@ function validategener(genre)
     });
     return schema.validate(genre);
 };
-
 
 
 module.exports.generschema=generschema;

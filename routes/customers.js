@@ -27,7 +27,6 @@ router.post('/',async(req,res)=>{
         res.status(404).send(result.error.details[0].message);
         return;
     }
-    console.log("ok");
     let customer= new Customer({
         name: req.body.name,
         isGold: req.body.isGold,

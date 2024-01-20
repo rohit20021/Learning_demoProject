@@ -1,7 +1,7 @@
 const mongoose= require('mongoose');
 const Joi = require('joi');
 
-const generschema = mongoose.Schema({
+const generSchema = mongoose.Schema({
     types: {
         type:String,
         require:true,
@@ -10,7 +10,7 @@ const generschema = mongoose.Schema({
     }
 });
 
-const Genre = mongoose.model('Genre',generschema);
+const Genre = mongoose.model('Genre',generSchema);
 
 function validategener(genre)
 {
@@ -21,6 +21,6 @@ function validategener(genre)
 };
 
 
-module.exports.generschema=generschema;
+module.exports.generSchema=generSchema;
 module.exports.Genre=Genre;
-module.exports.validategener=validategener;
+module.exports.validategener=validategener; 

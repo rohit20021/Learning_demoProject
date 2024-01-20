@@ -23,4 +23,4 @@ function validategener(genre)
 
 module.exports.generSchema=generSchema;
 module.exports.Genre=Genre;
-module.exports.validategener=validategener;
+module.exports.validategener=validategener; 
